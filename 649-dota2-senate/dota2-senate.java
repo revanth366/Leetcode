@@ -1,37 +1,34 @@
-import java.util.*;
-
 class Solution {
-    public String predictPartyVictory(String senate) {
-
-        Queue<Integer> R = new ArrayDeque<>();
-        Queue<Integer> D = new ArrayDeque<>();
-
-        int n = senate.length();
-        for (int i = 0; i < n; i++) {
-
-            if (senate.charAt(i) == 'R') {
+    public String predictPartyVictory(String s) {
+        ArrayDeque<Integer> R=new ArrayDeque<>();
+        ArrayDeque<Integer> D=new ArrayDeque<>();
+        int n=s.length();
+        for(int i=0;i<n;i++)
+        {
+            if(s.charAt(i)=='R')
+            {
                 R.add(i);
-            } else {
+            }
+            else
+            {
                 D.add(i);
             }
         }
-        while (!R.isEmpty() && !D.isEmpty()) {
-
-            int r = R.poll();
-            int d = D.poll();
-
-            if (r < d) {
-                R.add(r + n);
-
-            } else {
-               D.add(d + n);
+        while(!R.isEmpty()&&!D.isEmpty())
+        {
+            int r=R.poll();
+            int d=D.poll();
+            if(r<d)
+            {
+                R.add(r+n);
+            }
+            else
+            {
+                D.add(d+n);
             }
         }
-
-        if (R.isEmpty()) {
-            return "Dire";
-        }
-
+        if(D.isEmpty())
         return "Radiant";
+        return "Dire";
     }
 }
